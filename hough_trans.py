@@ -43,13 +43,14 @@ lines = cv2.HoughLinesP(edges, rho, theta, threshold, np.array([]), min_line_len
 
 for line in lines:
     for x1, y1, x2, y2 in line:
-        #if (y1 > (x1*fit_left[0] + fit_left[1]) & y1 > (x1*fit_right[0] + fit_right[1]))
         cv2.line(line_image, (x1,y1),(x2,y2),(255,0,0),7)
 
 line_image[~region_thresholds] = [0,0,0]
 
 color_edges = np.dstack((edges, edges, edges))
+plt.imshow(color_edges)
+plt.show()
 
 combo = cv2.addWeighted(color_edges, 0.8, line_image, 1, 0)
-plt.imshow(combo)
-plt.show()
+# plt.imshow(combo)
+# plt.show()
